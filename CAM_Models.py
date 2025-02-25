@@ -5,9 +5,10 @@ from colour.models import RGB_COLOURSPACE_sRGB
 import numpy as np
 
 def Nayatani95_Model():
-    # 測試樣本顏色（XYZ 色彩座標）
-    RGB_color = np.array([255, 1, 1])  # 紅色
-    XYZ_color = sRGB_to_XYZ(RGB_color / 255.0)  # 需正規化
+    
+    #測試 Kaleido 量測紅
+    LAB_color = np.array([26.9, 10.9, 3])
+    XYZ_color = Lab_to_XYZ(LAB_color)
 
     # 轉換為 XYZColor 物件
     color = XYZColor(XYZ_color[0], XYZ_color[1], XYZ_color[2])
@@ -45,9 +46,9 @@ def Nayatani95_Model():
     
 def ATD95_Model():
     
-    # 測試樣本顏色（XYZ 色彩座標）
-    RGB_color = np.array([255, 1, 1])  # 紅色
-    XYZ_color = sRGB_to_XYZ(RGB_color / 255.0)  # 需正規化
+    #測試 Kaleido 量測紅
+    LAB_color = np.array([26.9, 10.9, 3])
+    XYZ_color = Lab_to_XYZ(LAB_color)
     
     # 轉換為 XYZColor 物件
     color = XYZColor(XYZ_color[0], XYZ_color[1], XYZ_color[2])
