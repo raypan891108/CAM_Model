@@ -1,14 +1,15 @@
 from colormath.color_appearance_models import Nayatani95, ATD95, CIECAM02
 from colormath.color_objects import XYZColor
-from colour import sRGB_to_XYZ, XYZ_to_RGB, Lab_to_XYZ
-from colour.models import RGB_COLOURSPACE_sRGB
+from colour import Lab_to_XYZ
 import numpy as np
 
 def Nayatani95_Model():
     
+    #測試樣本顏色 
     #測試 Kaleido 量測紅
     LAB_color = np.array([26.9, 10.9, 3])
     XYZ_color = Lab_to_XYZ(LAB_color)
+    
 
     # 轉換為 XYZColor 物件
     color = XYZColor(XYZ_color[0], XYZ_color[1], XYZ_color[2])
@@ -46,9 +47,11 @@ def Nayatani95_Model():
     
 def ATD95_Model():
     
+    #測試樣本顏色 
     #測試 Kaleido 量測紅
     LAB_color = np.array([26.9, 10.9, 3])
     XYZ_color = Lab_to_XYZ(LAB_color)
+    
     
     # 轉換為 XYZColor 物件
     color = XYZColor(XYZ_color[0], XYZ_color[1], XYZ_color[2])
@@ -111,7 +114,7 @@ def CIECAM02_Model():
     # 輸出結果
     print("== CIECAM02 Color Appearance Model ==")
     print(f"red-green chromatic response (a): {model.a:.2f}")
-    print(f"yellow-blue chromatic response (a): {model.b:.2f}")
+    print(f"yellow-blue chromatic response (b): {model.b:.2f}")
     print(f"Brightness (Q): {model.brightness:.2f}")
     print(f"Chroma (C): {model.chroma:.2f}")
     print(f"Colorfulness (M): {model.colorfulness:.2f}")
@@ -120,4 +123,41 @@ def CIECAM02_Model():
     print(f"Saturation (S): {model.saturation:.2f}")
 
 
-CIECAM02_Model()
+# def CAM02_m1_model():
+#     #測試樣本顏色 
+#     #測試 Kaleido 量測紅
+#     LAB_color = np.array([26.9, 10.9, 3])
+#     XYZ_color = Lab_to_XYZ(LAB_color)
+    
+#     # 轉換為 XYZColor 物件
+#     color = XYZColor(XYZ_color[0], XYZ_color[1], XYZ_color[2])
+
+#     # 參考白點（D65）
+#     illuminant_d65 = XYZColor(95.05, 100, 108.88)
+
+#     # 設定 CIECAM02 參數
+#     l_a = 318.31   # 絕對適應亮度（典型照明）
+#     c = 0.69       # 環境影響指數（標準照明）  （平均/暗淡/黑暗）（0.69/0.59/0.525）
+#     n_c = 1.0      # 色彩適應係數（標準視覺）  （平均/暗淡/黑暗）（1.0,0.9,0.8）
+#     f = 1.0        # 環境因子                （平均/暗淡/黑暗）（1.0/0.9/0.8​​）
+#     d = False       # 抑制適應因子，讓模型自動計算
+
+#     print(color)
+#     # 建立 CIECAM02 模型
+#     model = CIECAM02(
+#         x=color.xyz_x, y=color.xyz_y, z=color.xyz_z,
+#         x_w=illuminant_d65.xyz_x, y_w=illuminant_d65.xyz_y, z_w=illuminant_d65.xyz_z,
+#         x_b = ,y_b = ,z_b= ,
+#         l_a=l_a, c=c, n_c=n_c, f=f,p = , d=d
+#     )
+
+#     # 輸出結果
+#     print("== CIECAM02 Color Appearance Model ==")
+#     print(f"red-green chromatic response (a): {model.a:.2f}")
+#     print(f"yellow-blue chromatic response (b): {model.b:.2f}")
+#     print(f"Brightness (Q): {model.brightness:.2f}")
+#     print(f"Chroma (C): {model.chroma:.2f}")
+#     print(f"Colorfulness (M): {model.colorfulness:.2f}")
+#     print(f"Hue Angle (h): {model.hue_angle:.2f}°")
+#     print(f"Lightness (J): {model.lightness:.2f}")
+#     print(f"Saturation (S): {model.saturation:.2f}")
